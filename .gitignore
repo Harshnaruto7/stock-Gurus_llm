@@ -36,6 +36,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Firebase config - Ignoring these files to protect your credentials
-firebase.ts
-firebaseConfig.ts
