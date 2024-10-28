@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <img src="#" className="mr-5 h-6 sm:h-9" alt="logo" />
+            <img src="/logo/stock_guru_icon.png" className="mr-5 h-6 sm:h-9" alt="logo" />
             <p className="max-w-xs mt-4 text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
+              We provide solutions for various software problems.
             </p>
             <div className="flex mt-8 space-x-6 text-gray-600">
               <a className="hover:opacity-75" href="#" target="_blank" rel="noreferrer">
@@ -95,7 +95,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="mt-8 text-xs text-gray-800"> © 2024 Company Name </p>
+        <p className="mt-8 text-xs text-gray-800"> © 2024 Stock Gurus </p>
       </div>
     </footer>
     

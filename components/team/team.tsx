@@ -8,7 +8,7 @@ const people = [
             '/pic/team/6 (3).jpg', // Placeholder image
     },
     {
-        name: 'Nikunjan GC',
+        name: 'Nikunjan  Cheetri',
         role: 'Virtual Currency SME / Blockchain Developer',
         imageUrl:
             '/pic/team/1.jpg', // Placeholder image

@@ -358,7 +358,7 @@ export default function Feature(){
 
           <div className="mt-2 md:mx-6">
             <div>
-              <p className="text-xl font-medium tracking-tight text-white">Emma Watson</p>
+              <p className="text-xl font-medium tracking-tight text-white">Jessica</p>
               <p className="text-blue-200">Marketing Manager at Stech</p>
             </div>
 

@@ -1,48 +1,55 @@
-import { db } from "@/firebase/firebase"; // Adjust the path as needed
+// app/api/submitform.ts
+import { db } from "../../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// Define the shape of the incoming request body
 interface FormData {
   name: string;
   email: string;
-  phone?: string; // phone is optional
-  message: string;
+  phone: string;
   contactMethod: "email" | "phone";
+  message: string;
   rating: number;
 }
 
-// API Route handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
-    try {
-      // Destructure form data from the request body
-      const { name, email, phone, message, contactMethod, rating }: FormData = req.body;
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-      // Ensure required fields are not empty
-      if (!name || !email || !message) {
-        return res.status(400).json({ error: "Missing required fields" });
-      }
+  try {
+    const formData: FormData = req.body;
 
-      // Add data to Firestore
-      const docRef = await addDoc(collection(db, "contacts"), {
-        name,
-        email,
-        phone,
-        message,
-        contactMethod,
-        rating,
-      });
-
-      // Return a success response
-      return res.status(201).json({ message: "Form submitted successfully!", id: docRef.id });
-    } catch (error) {
-      // Return an error response
-      console.error("Error adding document: ", error);
-      return res.status(500).json({ error: "Error saving data" });
+    // Basic validation
+    if (!formData.name || !formData.message) {
+      return res.status(400).json({ error: "Name and message are required" });
     }
-  } else {
-    // Handle other HTTP methods (e.g., GET)
-    return res.setHeader("Allow", ["POST"]).status(405).end(`Method ${req.method} Not Allowed`);
+
+    // Check if required contact method is provided
+    if (formData.contactMethod === "email" && !formData.email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+    if (formData.contactMethod === "phone" && !formData.phone) {
+      return res.status(400).json({ error: "Phone is required" });
+    }
+
+    // Add to Firebase
+    const docRef = await addDoc(collection(db, "contacts"), {
+      ...formData,
+      createdAt: new Date().toISOString()
+    });
+
+    return res.status(200).json({ 
+      success: true, 
+      message: "Form submitted successfully",
+      id: docRef.id 
+    });
+
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    return res.status(500).json({ 
+      success: false, 
+      error: "Failed to submit form" 
+    });
   }
 }
