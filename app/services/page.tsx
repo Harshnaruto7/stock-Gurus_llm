@@ -4,9 +4,18 @@ import React from "react";
 import { Navbar } from "@/components";
 import EmailMarketing from "@/components/email/email";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 export default function Service(){
+ 
+  // using Router
+  const router = useRouter();
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+
  
     return(
    <>
@@ -96,7 +105,9 @@ export default function Service(){
                 <p className="mt-4 text-gray-600">
                   Tailored web development services to build responsive, user-friendly websites and applications.
                 </p>
-                <button className="mt-8 mb-4 py-2 px-14 rounded-full bg-blue-600 text-white tracking-widest hover:bg-blue-500 transition duration-200">
+                <button 
+                onClick={() => handleNavigation("/services/MoreSection")}
+                className="mt-8 mb-4 py-2 px-14 rounded-full bg-blue-600 text-white tracking-widest hover:bg-blue-500 transition duration-200">
                   MORE
                 </button>
               </div>

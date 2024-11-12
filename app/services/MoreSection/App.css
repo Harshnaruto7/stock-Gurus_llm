@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.bg-app {
+  background-image: url('https://images.unsplash.com/photo-1589070127509-ea788341cc5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=889&q=80');
+}
